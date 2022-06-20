@@ -1,0 +1,40 @@
+class Solution
+{
+    public:
+    //Function to remove duplicates from unsorted linked list.
+    Node * removeDuplicates( Node *head) {
+     
+     unordered_map<int,int>mp;
+     
+     Node* prev=NULL;
+     Node* curr=head;
+     mp[curr->data]=1;
+     prev=curr;
+     curr=curr->next;
+     
+     
+    while(curr){
+     
+     //if that node alredy present in map  means duplicate 
+      if(mp[curr->data]){
+          prev->next=curr->next;
+          free(curr);
+      }
+      
+      //node is not in map means no duplicate
+      else{
+          mp[curr->data]=1;
+          prev=curr;
+      }
+        
+       curr=curr->next; 
+        
+}
+    
+
+    return head; 
+     
+     
+     
+    }
+};
