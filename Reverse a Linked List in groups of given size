@@ -1,0 +1,29 @@
+//gfg wala
+
+
+class Solution{
+    public:
+    struct node *reverse (struct node *head, int k){
+        
+     struct node* curr=head,*prev=NULL,*nxt;
+     
+     int count=1;
+     
+     while(curr && count<=k){
+         
+         nxt=curr->next;
+         curr->next=prev;
+         prev=curr;
+         curr=nxt;
+         count++;
+     }
+
+
+ if(nxt)head->next=reverse(curr,k);
+ 
+ return prev;
+
+
+
+    }
+};
