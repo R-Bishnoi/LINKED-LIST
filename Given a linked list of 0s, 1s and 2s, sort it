@@ -1,0 +1,47 @@
+class Solution{
+    public:
+ 
+    Node* segregate(Node *head) {
+        
+   //approach (1) if data replacement allowed than we count no. of 0,1,2 and then we replace that times
+   //approach (2) make 3 different linked list
+   if(head==NULL && head->next==NULL)return head;
+  
+  // take dummy node so easy for solve the question  
+Node* zhead=new Node(-1);
+Node* fhead=new Node(-2);
+Node* shead=new Node(-3);
+
+Node* p1=zhead,*p2=fhead,*p3=shead;
+
+Node* temp=head;
+
+while(temp!=NULL){
+    
+    if(temp->data==0){
+        p1->next=temp;
+        p1=p1->next;
+    }
+    else if(temp->data==1){
+        p2->next=temp;
+        p2=p2->next;
+    }
+    else if(temp->data==2) {
+        p3->next=temp;
+        p3=p3->next;
+    } 
+
+temp=temp->next;
+    
+}
+
+     p3->next=NULL; 
+   p2->next=shead->next;
+    p1->next=fhead->next;
+   
+    
+    
+return zhead->next;
+        
+    }
+};
