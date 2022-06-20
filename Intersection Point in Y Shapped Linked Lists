@@ -1,0 +1,61 @@
+
+//step (1)  calculate height of both linked list
+//step (2)   find d=abs(h1-h2)
+//step (3)  if(h1>=h2)   then move pointer1 of h1 for d times
+//else if(h2>h1)  then move pointer2 of h2 for d times
+
+//step (4) now tarverse both if they get common element and print
+
+
+
+
+
+
+
+int intersectPoint(Node* head1, Node* head2){
+
+Node* temp1=head1;
+Node* temp2=head2;
+int h1=0,h2=0;
+
+while(temp1!=NULL){
+    temp1=temp1->next;
+    h1++;
+}
+
+while(temp2!=NULL){
+    temp2=temp2->next;
+    h2++;
+}
+
+
+int d=abs(h1-h2);
+
+temp1=head1;
+temp2=head2;
+
+
+
+if(h1>=h2){
+ while(d--)
+     temp1=temp1->next;
+}
+
+else if(h2>h1){
+ while(d--)
+     temp2=temp2->next;
+}
+
+
+
+
+while(temp1!=temp2){
+    temp1=temp1->next;
+    temp2=temp2->next;
+}
+
+
+return temp1->data;
+
+
+}
