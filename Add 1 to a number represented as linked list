@@ -1,0 +1,77 @@
+class Solution{
+    public:
+    
+ Node* solve(Node *head){
+   
+   if(head==NULL)return NULL;
+   if(head->next==NULL)return head;
+   
+  Node* curr=head,*prev=NULL,*nxt;
+  
+  while(curr){
+      nxt=curr->next;
+      curr->next=prev;
+      prev=curr;
+      curr=nxt;
+  }
+  
+  return prev;   
+ }   
+    
+Node* addOne(Node *head) {
+        //reverse
+        //add+1
+        //reverse
+  if(head==NULL)return NULL;
+ if(head->next==NULL){
+    head->data=head->data +1;
+    return head;
+ }
+
+   
+   
+    
+Node* temp=solve(head);
+
+
+int c=0;
+int sum=1;
+Node* prev=NULL;
+Node* oops=temp;
+while(temp){
+    
+if(temp->data==9){
+     sum=9+c+sum;
+    c=(sum >= 10)?1:0;
+    temp->data=sum%10;
+}
+
+else{
+    
+    temp->data=temp->data+c+sum;
+    c=0;
+}
+sum=0;
+prev=temp;
+temp=temp->next;
+
+    
+}
+    
+
+if(c==1){
+    Node* p=new Node(c);
+    prev->next=p;
+    prev=p;
+}    
+    
+ 
+Node* ans= solve(oops);   
+    
+  return ans;  
+
+    
+        
+    }
+};
+
