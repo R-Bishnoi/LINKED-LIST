@@ -1,0 +1,67 @@
+class Solution{
+    public:
+    
+  //reverse function
+   struct Node* reverse(struct Node* root){
+      
+      if(root==NULL)return NULL;
+      if(root->next==NULL)return root;
+      
+    Node *prev=NULL;
+    Node *curr=root;
+  
+  while(curr!=NULL){
+      Node* temp=curr->next;
+      curr->next=prev;
+      prev=curr;
+      curr=temp;
+      
+  }    
+       
+ return prev;   
+} 
+    
+
+// given function
+struct Node* addTwoLists(struct Node* first, struct Node* second) {
+    
+       
+    first=reverse(first);   
+    second=reverse(second);
+   
+  int sum=0;
+  int c=0;
+  
+  Node* res=NULL;
+  Node* curr=NULL;
+  Node* temp=NULL;
+ while(first!=NULL || second!=NULL){
+     
+  sum=c+ (first?first->data:0) + (second?second->data:0);
+  c= (sum>=10)?1:0;
+  sum=sum%10;
+  
+ temp=new Node(sum);
+ 
+ if(res==NULL)res=temp;
+ else curr->next=temp;
+ curr=temp;
+ 
+ if(first)first=first->next;
+ if(second)second=second->next;
+     
+ }
+ 
+//if at of the end carry left one then sum become 1 so we need to make a another node 
+ if(c>0){
+     temp=new Node(c);
+     curr->next=temp;
+ }
+ 
+  res=reverse(res);
+  
+  return res;
+    
+      
+    }
+};
