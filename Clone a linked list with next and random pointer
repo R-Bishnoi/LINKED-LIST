@@ -32,6 +32,14 @@ while(curr){
 
 //seperate the org linked list and copied linked list
 
+//case where linked list is NULL
+
+  if(head==NULL){
+     Node* dummy=new Node(-1);
+      return dummy->next;
+   } 
+
+
 Node* org=head;
 Node* copy=head->next;
 Node* res=copy;
