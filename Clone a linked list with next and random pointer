@@ -1,0 +1,54 @@
+class Solution{
+    public:
+    
+    Node *copyList(Node *head){
+ 
+ 
+ 
+ //step 1       
+    Node* curr=head;
+  
+  //creation of copy node in between orignal nodes  
+    while(curr){
+        Node* temp=curr->next;
+        curr->next=new Node(curr->data);
+        curr->next->next=temp;
+        curr=temp;
+    }
+
+ curr=head;
+ 
+
+//step 2
+
+//make arbitary connection for copied node
+while(curr){
+    curr->next->arb=curr->arb ? curr->arb->next : NULL;
+    curr=curr->next->next;
+}
+
+ 
+//step 3
+
+//seperate the org linked list and copied linked list
+
+Node* org=head;
+Node* copy=head->next;
+Node* res=copy;
+
+
+while(org && copy){
+    org->next=org->next->next;
+    copy->next= copy->next ? copy->next->next : NULL;
+    
+    org=org->next;
+    copy=copy->next;
+}
+
+
+return res;
+        
+        
+    }
+
+};
