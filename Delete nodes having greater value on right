@@ -1,0 +1,61 @@
+class Solution{
+    public:
+    
+  
+//reverse function  
+  Node* rev(Node* head){
+      if(head==NULL || head->next==NULL)return head;
+      
+     Node* curr=head;
+     Node* prev=NULL;
+     Node* nxt;
+     
+  while(curr){
+   nxt=curr->next;
+   curr->next=prev;
+   prev=curr;
+   curr=nxt;
+  }
+  
+  
+  return prev;
+  }  
+    
+    
+    
+    
+Node *compute(Node *head){
+       
+if(head==NULL || head->next==NULL)return head;
+    
+  Node* temp=rev(head);
+  Node* pemp=temp;
+  
+int mx=temp->data;
+Node* prev=temp;
+temp=temp->next;
+
+while(temp ){
+  
+ if(mx > temp->data){
+     prev->next=temp->next;
+     temp=prev->next;
+ }   
+  
+ else{
+     mx=temp->data;
+     prev=temp;
+     temp=temp->next;
+ } 
+    
+    
+}
+       
+ Node* ans=rev(pemp);
+ 
+ return ans;
+ 
+    }
+    
+};
+   
