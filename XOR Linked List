@@ -1,0 +1,36 @@
+struct Node *insert(struct Node *head, int data) {
+   
+ struct Node* temp=new Node(data);
+ 
+ temp->npx=XOR(head,0);
+ 
+ if(head!=0){
+     head->npx=XOR(temp,XOR(head->npx,0));
+ }
+   
+  head=temp; 
+   
+}
+
+vector<int> printList(struct Node *head) {
+ 
+ vector<int>v;
+ 
+ Node* curr=head;
+ Node* prev=0;
+ Node* nxt;
+ 
+ while(curr){
+    v.push_back(curr->data);
+    nxt=XOR(curr->npx,prev);
+    prev=curr;
+    curr=nxt;
+     
+ }
+ 
+ return v;
+ 
+ 
+ 
+}
+
